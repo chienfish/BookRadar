@@ -1,0 +1,10 @@
+.password-container {
+    position: relative;
+  }
+  
+  .eye-icon {
+    color: #7e7e7e;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+  }

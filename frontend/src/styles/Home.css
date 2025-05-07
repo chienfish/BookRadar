@@ -1,0 +1,77 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 40px;
+  font-family: 'Inter', sans-serif;
+  min-height: 85vh;
+}
+
+
+.bookradar-title {
+    font-size: 64px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #b2e0db, #76b5f8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 50px;
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.category-btn {
+    border: 1px solid #999;
+    border-radius: 999px;
+    padding: 14px 28px;
+    background: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+.category-btn.selected {
+    background-color: #4aa4ff;
+    color: white;
+    border-color: #4aa4ff;
+}
+
+.search-label {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    padding: 14px 24px;
+    width: 480px;
+    max-width: 90%;
+    box-sizing: border-box;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 20px;
+}
+
+.search-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}

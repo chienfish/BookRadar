@@ -1,0 +1,186 @@
+.profile-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+  padding: 70px;
+  padding-top: 10px;
+  gap: 30px;
+  font-family: Arial, sans-serif;
+  position: relative;
+  flex-wrap: wrap; /* 讓子元素在小屏幕時換行 */
+  justify-content: center; /* 保持內容居中 */
+  margin: 0 auto;
+}
+
+.profile-left {
+  flex: 1;
+  text-align: left;
+}
+
+.profile-left h1 {
+  font-size: 35px;
+  color: #1976D2;
+  margin-bottom: 15px;
+  margin-top: 35px;
+}
+
+.profile-left h2 {
+  font-size: 25px;
+  color: black;
+  margin-top: 23px;
+  margin-bottom: 0px;
+}
+
+.profile-left p {
+  margin: 5px;
+  font-size: 20px;
+  color: black;
+}
+
+.profile-left .id-text {
+  color: #4c4c4c; 
+}
+
+.profile-left form {
+  width: 100%; 
+  text-align: left; 
+  margin-left: 0px;
+  padding-top: 2px;
+}
+
+.profile-left label {
+  display: block;
+  font-weight: bold;
+}
+
+.profile-left input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.profile-left button {
+  background-color: #1976D2;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.profile-left button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.profile-left button:hover:not(:disabled) {
+  background-color: #115599;
+}
+
+.profile-right {
+  flex: 1;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.avatar-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-top: 90px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.profile-right h2 {
+  color: #000000;
+  font-size: 25px;
+  margin-top: 0px;
+}
+
+.profile-right input[type="file"] {
+  width: 100%; 
+  margin-bottom: 10px;
+  max-width: 250px;
+}
+
+.profile-right form {
+  width: 100%; 
+  text-align: center; 
+  margin-left: 0px;
+  padding-top: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-right button {
+  background-color: #1976D2;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  max-width: 200px;
+}
+
+.profile-right button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.profile-right button:hover:not(:disabled) {
+  background-color: #115599;
+}
+
+.message {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.message.success {
+  color: #4CAF50;
+}
+
+.message.error {
+  color: #f44336;
+}
+
+@media (max-width: 640px) {
+  .profile-container {
+    flex-direction: column; /* 改為垂直排列 */
+    align-items: center; /* 保證內容水平居中 */
+    padding: 30px;
+  }
+
+  .profile-left, .profile-right {
+    flex: 1; /* 讓兩個區塊寬度相同 */
+    width: 100%; /* 填滿父容器 */
+    padding: 20px; /* 添加適當內邊距 */
+    box-sizing: border-box; /* 確保內邊距不影響寬度 */
+  }
+
+  .profile-right {
+    padding-top: 0; /* 調整 padding，避免過大間距 */
+  }
+
+  .avatar-img {
+    width: 150px;
+    height: 150px;
+  }
+}
