@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../api";
 import "../styles/Profile.css";
 import Bar from "../components/Bar";
+import { FaRegUserCircle } from "react-icons/fa";
 
 function Profile() {
   const [account, setAccount] = useState(null);
@@ -11,7 +12,7 @@ function Profile() {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [avatar, setAvatar] = useState(null);
-  const [avatarPreview, setAvatarPreview] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState(null); // 改為 null 預設
 
   useEffect(() => {
     getAccount();
@@ -27,7 +28,7 @@ function Profile() {
         if (res.data.avatar) {
           setAvatarPreview(`${import.meta.env.VITE_API_URL}${res.data.avatar}`);
         } else {
-          setAvatarPreview("/assets/nohead.jpg");
+          setAvatarPreview(null); // 沒有圖就設 null
         }
       })
       .catch((err) => alert(err));
@@ -60,7 +61,7 @@ function Profile() {
           setMessage("密碼更改失敗，請檢查輸入");
         }
       })
-      .catch((err) => {
+      .catch(() => {
         setMessage("密碼更改失敗，請檢查輸入");
       })
       .finally(() => {
@@ -72,7 +73,6 @@ function Profile() {
     const file = e.target.files[0];
     if (file) {
       setAvatar(file);
-      // setAvatarPreview(URL.createObjectURL(file));
     }
   };
 
@@ -100,7 +100,7 @@ function Profile() {
           setAvatarPreview(`${import.meta.env.VITE_API_URL}${res.data.avatar}`);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         setMessage("個人圖片更新失敗");
       });
   };
@@ -115,8 +115,11 @@ function Profile() {
     <>
       <Bar />
       <div className="profile-container">
-        {/* 顯示訊息 */}
-        {message && <p className={`message ${message.includes("成功") ? 'success' : 'error'}`}>{message}</p>}
+        {message && (
+          <p className={`message ${message.includes("成功") ? "success" : "error"}`}>
+            {message}
+          </p>
+        )}
 
         <div className="profile-left">
           <h1>個人檔案</h1>
@@ -158,7 +161,11 @@ function Profile() {
         </div>
 
         <div className="profile-right">
-          <img src={avatarPreview} alt="Avatar" className="avatar-img" />
+          {avatarPreview ? (
+            <img src={avatarPreview} alt="Avatar" className="avatar-img" />
+          ) : (
+            <FaRegUserCircle className="avatar-icon" />
+          )}
           <h2>個人圖片</h2>
           <form onSubmit={handleAvatarSubmit}>
             <input

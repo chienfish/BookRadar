@@ -5,6 +5,8 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
 import LoadingIndicator from "./LoadingIndicator";
 import EyeIcon from "./EyeIcon";
+import { useUser } from "../contexts/UserContext";
+
 
 function Form({ route, method }) {
     const [username, setUsername] = useState("");
@@ -18,6 +20,7 @@ function Form({ route, method }) {
 
     const name = method === "login" ? "登入" : "註冊";
 
+    const { fetchUser } = useUser();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const viewport = document.querySelector("meta[name=viewport]");
@@ -50,6 +53,7 @@ function Form({ route, method }) {
                 if (res.data && res.data.access && res.data.refresh) {
                     localStorage.setItem(ACCESS_TOKEN, res.data.access);
                     localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+                    await fetchUser();
                     if (viewport) {
                         viewport.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1.0");
                     }

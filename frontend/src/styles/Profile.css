@@ -102,6 +102,12 @@
   object-fit: cover;
 }
 
+.avatar-icon {
+  font-size: 150px;
+  margin-top: 90px;
+  margin-bottom: 10px;
+}
+
 .profile-right h2 {
   color: #000000;
   font-size: 25px;

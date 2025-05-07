@@ -80,6 +80,14 @@
   cursor: pointer;
 }
 
+.bar-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
 @media (max-width: 640px) {
   .bar-links {
     display: none;
