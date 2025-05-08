@@ -25,11 +25,13 @@ function Home() {
     const handleSearch = () => {
         const query = encodeURIComponent(searchInput.trim());
         const categoryQuery = selectedTypes.map(t => encodeURIComponent(t)).join(',');
-        console.log(selectedTypes, searchInput);
-
-        // if (query || categoryQuery) {
-        //     window.location.href = `/search?q=${query}&categories=${categoryQuery}`;
-        // }
+    
+        const params = [];
+        if (query) params.push(`q=${query}`);
+        if (categoryQuery) params.push(`categories=${categoryQuery}`);
+    
+        const finalQuery = params.length ? `?${params.join("&")}` : "";
+        window.location.href = `/result${finalQuery}`;
     };
 
     return (

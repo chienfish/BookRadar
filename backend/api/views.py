@@ -11,6 +11,8 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from django.conf import settings
 from django.core.files.storage import default_storage
 import os
+from rest_framework.pagination import PageNumberPagination
+from django.db.models import Q
 
 
 class CreateUserView(generics.CreateAPIView):
@@ -93,3 +95,30 @@ class CategoryListAPIView(APIView):
     def get(self, request):
         categories = Category.objects.filter(parent__isnull=True)
         return Response([c.name for c in categories])
+    
+class BookSearchPagination(PageNumberPagination):
+    page_size = 10
+
+class BookSearchAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        q = request.GET.get("q", "").strip()
+        category_names = request.GET.get("categories", "").split(",")
+        category_names = [name for name in category_names if name]
+
+        books = Book.objects.all()
+
+        if q:
+            books = books.filter(Q(title__icontains=q) | Q(isbn__icontains=q))
+
+        if category_names:
+            books = books.filter(
+                categories__parent__isnull=True,
+                categories__name__in=category_names
+            ).distinct()
+
+        paginator = BookSearchPagination()
+        page = paginator.paginate_queryset(books, request)
+        serializer = BookSerializer(page, many=True)
+        return paginator.get_paginated_response(serializer.data)

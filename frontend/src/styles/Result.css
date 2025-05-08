@@ -1,0 +1,61 @@
+.result-container {
+    padding: 2rem;
+}
+
+.result-title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.book-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+}
+
+.book-image {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.book-info h3 {
+    margin: 0 0 0.5rem;
+}
+
+.view-more {
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    font-weight: bold;
+    background-color: #eee;
+}

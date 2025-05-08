@@ -24,7 +24,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ["isbn", "title", "author", "cover_url", "categories"]
+        fields = ["isbn", "title", "author", "cover_url", "description", "categories"]
         extra_kwargs = {"isbn": {"read_only": True}}
 
 class BookstorePriceSerializer(serializers.ModelSerializer):

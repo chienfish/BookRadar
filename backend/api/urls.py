@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path("categories/", views.CategoryListAPIView.as_view()),
+    path("search/", views.BookSearchAPIView.as_view()),
 ]

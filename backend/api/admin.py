@@ -3,7 +3,7 @@ from .models import Book, BookstorePrice, LibraryHolding, Profile, Category
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('isbn', 'title', 'author', 'cover_preview', 'category_path_list')
+    list_display = ('isbn', 'title', 'author', 'cover_preview', "description", 'category_path_list')
     search_fields = ('isbn', 'title', 'author')
     ordering = ('title',)
     filter_horizontal = ('categories',)
