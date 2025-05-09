@@ -1,0 +1,99 @@
+.book-detail-container {
+    display: flex;
+    padding: 3rem;
+    gap: 3rem;
+    font-size: 1.15rem;
+}
+
+.book-info-left {
+    width: 260px;
+    text-align: center;
+}
+
+.book-cover {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.summary {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+.book-info-right {
+    flex: 1;
+}
+
+.book-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.book-meta {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.tab-buttons {
+    margin-bottom: 1rem;
+}
+
+.tab-buttons button {
+    padding: 0.6rem 1.2rem;
+    margin-right: 1rem;
+    background-color: #eee;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.tab-buttons .active {
+    background-color: #7a5ef8;
+    color: white;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.info-table th,
+.info-table td {
+    border: 1px solid #ccc;
+    padding: 0.8rem;
+    text-align: left;
+}
+.back-button-container {
+    padding: 1rem 3rem 0;
+}
+
+.back-button {
+    font-size: 1rem;
+    background-color: #ccc;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #888;
+    color: white;
+}
+

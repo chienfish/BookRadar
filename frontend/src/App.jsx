@@ -7,7 +7,8 @@ import NotFound from "./pages/NotFound"
 import Profile from "./pages/Profile";
 import About from "./pages/About";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Result from "./pages/Result";
+import Books from "./pages/Books";
+import BookDetail from "./pages/BookDetail";
 
 
 function Logout() {
@@ -49,10 +50,18 @@ function App() {
           }
         />
         <Route
-          path="/result"
+          path="/books"
           element={
             <ProtectedRoute>
-              <Result />
+              <Books />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/detail/:isbn"
+          element={
+            <ProtectedRoute>
+              <BookDetail />
             </ProtectedRoute>
           }
         />

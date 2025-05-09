@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import api from "../api";
-import "../styles/Result.css";
+import "../styles/Books.css";
 import Bar from "../components/Bar";
 
-function Result() {
+
+function Books() {
     const location = useLocation();
     const navigate = useNavigate();
     const [books, setBooks] = useState([]);
@@ -35,7 +36,7 @@ function Result() {
 
     const handlePageChange = (newPage) => {
         queryParams.set("page", newPage);
-        navigate(`/result?${queryParams.toString()}`);
+        navigate(`/books?${queryParams.toString()}`);
     };
 
     return (
@@ -54,7 +55,9 @@ function Result() {
                                     <h3>{book.title}</h3>
                                     <p>作者：{book.author}</p>
                                     <p>內容簡介：{book.description}</p>
-                                    <button className="view-more">View More</button>
+                                    <Link to={`/detail/${book.isbn}`}>
+                                        <button className="view-more">View More</button>
+                                    </Link>
                                 </div>
                             </div>
                         ))}
@@ -82,4 +85,4 @@ function Result() {
     );
 }
 
-export default Result;
+export default Books;

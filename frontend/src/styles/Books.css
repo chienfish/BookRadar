@@ -41,6 +41,10 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.view-more:hover {
+    background-color: #888;
+    color: white;
+}
 
 .pagination {
     text-align: center;

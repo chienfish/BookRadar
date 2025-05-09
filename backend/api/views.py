@@ -122,3 +122,23 @@ class BookSearchAPIView(APIView):
         page = paginator.paginate_queryset(books, request)
         serializer = BookSerializer(page, many=True)
         return paginator.get_paginated_response(serializer.data)
+    
+class BookDetailAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, isbn):
+        try:
+            book = Book.objects.get(pk=isbn)
+        except Book.DoesNotExist:
+            return Response({"error": "Book not found"}, status=404)
+
+        return Response({
+            "isbn": book.isbn,
+            "title": book.title,
+            "author": book.author,
+            "cover_url": book.cover_url,
+            "description": book.description,
+            "categories": [str(cat) for cat in book.categories.all()],
+            "bookstore_prices": BookstorePriceSerializer(book.prices.all(), many=True).data,
+            "library_holdings": LibraryHoldingSerializer(book.holdings.all(), many=True).data,
+        })
