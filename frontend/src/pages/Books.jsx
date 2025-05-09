@@ -42,6 +42,10 @@ function Books() {
     return (
         <div>
             <Bar />
+            <div className="search-summary">
+                {q && <p>🔍 搜尋關鍵字：<strong>{q}</strong></p>}
+                {categories && <p>📂 分類：<strong>{decodeURIComponent(categories).replace(/,/g, "、")}</strong></p>}
+            </div>
             <div className="result-container">
                 <h2 className="result-title">搜尋結果</h2>
                 {books.length === 0 ? (
@@ -50,14 +54,29 @@ function Books() {
                     <div className="book-list">
                         {books.map((book, index) => (
                             <div className="book-card" key={index}>
-                                <img src={book.cover_url} alt={book.title} className="book-image" />
+                                <div className="book-image-wrapper">
+                                    <img src={book.cover_url} alt={book.title} className="book-image" />
+                                    <Link to={`/detail/${book.isbn}`}>
+                                        <button className="view-more-overlay">View More</button>
+                                    </Link>
+                                </div>
                                 <div className="book-info">
                                     <h3>{book.title}</h3>
                                     <p>作者：{book.author}</p>
+                                    <p>ISBN：{book.isbn}</p>
                                     <p>內容簡介：{book.description}</p>
-                                    <Link to={`/detail/${book.isbn}`}>
-                                        <button className="view-more">View More</button>
-                                    </Link>
+                                    <div className="book-categories">
+                                        {book.categories && book.categories.length > 0 && (
+                                            <div className="tags">
+                                                {book.categories
+                                                    .map(c => c.name) // 取出 name
+                                                    .filter((v, i, self) => self.indexOf(v) === i)
+                                                    .map((cat, i) => (
+                                                        <span key={i} className="category-tag">{cat}</span>
+                                                    ))}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         ))}
