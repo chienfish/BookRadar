@@ -57,7 +57,7 @@ function Books() {
                                 <div className="book-image-wrapper">
                                     <img src={book.cover_url} alt={book.title} className="book-image" />
                                     <Link to={`/detail/${book.isbn}`}>
-                                        <button className="view-more-overlay">View More</button>
+                                        <button className="view-more-overlay">查看細節</button>
                                     </Link>
                                 </div>
                                 <div className="book-info">
