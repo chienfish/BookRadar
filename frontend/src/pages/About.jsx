@@ -31,9 +31,9 @@ function About() {
         role: "工海碩一",
         description: "主要任務：全端開發與資料庫設計",
         weeks: [
-          "規劃 UI 設計",
-          "設定架構與系統整合",
-          "API 路由設計與測試",
+          "設計後端架構與前端 UI",
+          "資料爬蟲與系統整合",
+          "API 設計與測試",
         ],
         avatar: "/avatars/founder3.png",
       },
@@ -56,8 +56,8 @@ function About() {
                 開發一個整合「線上書店價格」與「圖書館的館藏狀況」的資訊查詢系統。使用者輸入書名或 ISBN，即可獲得：
                 </p>
                 <ul>
-                <li>博客來、誠品和金石堂線上書店的比價</li>
-                <li>哪些圖書館可借閱該書</li>
+                <li>線上書店的比價<strong>（博客來、誠品、金石堂）</strong></li>
+                <li>哪些圖書館可借閱該書<strong>（國資圖、台北市立圖書館）</strong></li>
                 <li>是否建議購買或借書</li>
                 </ul>
                 <p>
@@ -76,7 +76,7 @@ function About() {
               {members.map((m, idx) => (
                 <div key={idx} className="member-card">
                   <img src={m.avatar} alt={`${m.name} avatar`} className="founder-img" />
-                  <h3>{m.name}　{m.role}</h3>
+                  <h3>{m.name}&nbsp;{m.role}</h3>
                   <p><strong>{m.description}</strong></p>
                   <div>
                     {m.weeks.map((w, i) => (

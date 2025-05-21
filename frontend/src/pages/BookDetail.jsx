@@ -43,7 +43,7 @@ function BookDetail() {
                     <img src={book.cover_url} alt={book.title} className="book-cover" />
                     <p className="recommendation">{recommendation}</p>
                     <p className="summary">
-                        {availableCount} 間圖書館可借，且書店最低價為 ${minPrice}
+                        <strong>{availableCount}</strong> 間圖書館可借，且書店最低價為 <strong>${minPrice}</strong>
                     </p>
                 </div>
 
@@ -74,27 +74,32 @@ function BookDetail() {
                     </div>
 
                     {tab === "library" && (
-                        <table className="info-table">
-                            <thead>
-                                <tr>
-                                    <th>圖書館名稱</th>
-                                    <th>是否可借</th>
-                                    <th>館藏位置</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {book.library_holdings.map((h, i) => (
-                                    <tr key={i}>
-                                        <td>{h.library_name}</td>
-                                        <td style={{ color: h.available ? "green" : "red" }}>
-                                            {h.available ? "✅ 可借" : "❌ 不可借"}
-                                        </td>
-                                        <td>{h.location}</td>
+                        book.library_holdings.length === 0 ? (
+                            <p className="no-library-message">🚫 沒有任何圖書館可借閱</p>
+                        ) : (
+                            <table className="info-table">
+                                <thead>
+                                    <tr>
+                                        <th>圖書館名稱</th>
+                                        <th>是否可借</th>
+                                        <th>館藏位置</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {book.library_holdings.map((h, i) => (
+                                        <tr key={i}>
+                                            <td>{h.library_name}</td>
+                                            <td style={{ color: h.available ? "green" : "red" }}>
+                                                {h.available ? "✅ 可借" : "❌ 不可借"}
+                                            </td>
+                                            <td>{h.location}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        )
                     )}
+
 
                     {tab === "store" && (
                         <table className="info-table">
@@ -106,16 +111,20 @@ function BookDetail() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {book.bookstore_prices.map((p, i) => (
-                                    <tr key={i}>
-                                        <td>{p.store_name}</td>
-                                        <td>${p.price}</td>
-                                        <td><a href={p.url} target="_blank" rel="noreferrer">前往</a></td>
-                                    </tr>
-                                ))}
+                                {book.bookstore_prices.map((p, i) => {
+                                    const isMin = parseFloat(p.price) === minPrice;
+                                    return (
+                                        <tr key={i} className={isMin ? "highlight-row" : ""}>
+                                            <td>{p.store_name}</td>
+                                            <td>${p.price}</td>
+                                            <td><a href={p.url} target="_blank" rel="noreferrer">前往</a></td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
                         </table>
                     )}
+
                 </div>
             </div>
         </div>

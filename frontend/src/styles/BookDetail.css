@@ -97,3 +97,13 @@
     color: white;
 }
 
+.no-library-message {
+    color: #aa0000;
+    font-weight: bold;
+    padding: 16px;
+}
+
+.highlight-row {
+    background-color: #fffae6;
+    font-weight: bold;
+}
