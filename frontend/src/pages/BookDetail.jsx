@@ -7,7 +7,7 @@ import Bar from "../components/Bar";
 function BookDetail() {
     const { isbn } = useParams();
     const [book, setBook] = useState(null);
-    const [tab, setTab] = useState("library"); // "library" or "store"
+    const [tab, setTab] = useState("store"); // "library" or "store"
     const navigate = useNavigate();
 
     const goBack = () => {
@@ -15,10 +15,13 @@ function BookDetail() {
     };
 
     useEffect(() => {
-        api.get(`/api/book/${isbn}/`)
-            .then(res => setBook(res.data))
-            .catch(err => alert("載入書籍資料失敗：" + err));
-    }, [isbn]);
+    api.get(`/api/book/${isbn}/`)
+        .then(res => {
+            setBook(res.data);
+        })
+        .catch(err => alert("載入書籍資料失敗：" + err));
+}, [isbn]);
+
 
     if (!book) return <div>Loading...</div>;
 
@@ -46,6 +49,20 @@ function BookDetail() {
 
                 <div className="book-info-right">
                     <h1 className="book-title">{book.title}</h1>
+
+                    <div className="book-categories">
+                        {book.categories && book.categories.length > 0 && (
+                            <div className="tags">
+                                {book.categories
+                                    .reduce((a, b) => (b.length > a.length ? b : a), "") // 取最長字串
+                                    .split(" > ") // 拆成分類陣列
+                                    .map((cat, i) => (
+                                        <span key={i} className="category-tag">{cat}</span>
+                                    ))}
+                            </div>
+                        )}
+                    </div>
+
                     <p className="book-meta">
                         作者：{book.author}<br />
                         ISBN：{book.isbn}<br />

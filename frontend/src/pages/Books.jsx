@@ -64,7 +64,7 @@ function Books() {
                                     <h3>{book.title}</h3>
                                     <p>作者：{book.author}</p>
                                     <p>ISBN：{book.isbn}</p>
-                                    <p>內容簡介：{book.description}</p>
+                                    {/* <p>內容簡介：{book.description}</p> */}
                                     <div className="book-categories">
                                         {book.categories && book.categories.length > 0 && (
                                             <div className="tags">
