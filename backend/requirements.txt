@@ -9,3 +9,7 @@ sqlparse
 psycopg2-binary
 python-dotenv
 gunicorn
+django
+djangorestframework
+django-cors-headers
+whitenoise
