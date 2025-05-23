@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../api";
 import "../styles/BookDetail.css";
 import Bar from "../components/Bar";
+import React from "react";
+
 
 function BookDetail() {
     const { isbn } = useParams();

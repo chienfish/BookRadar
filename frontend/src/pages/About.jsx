@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../api";
 import Bar from "../components/Bar";
 import "../styles/About.css"; 
+import React from "react";
 
 
 function About() {
@@ -14,7 +15,7 @@ function About() {
           "UI 畫面切版",
           "專案文書資料管理",
         ],
-        avatar: "/avatars/founder1.png",
+        avatar: `${import.meta.env.BASE_URL}avatars/founder1.png`,
       },
       {
         name: "游峻安",
@@ -24,7 +25,7 @@ function About() {
           "完成爬蟲模組",
           "提供測試資料與整合",
         ],
-        avatar: "/avatars/founder2.png",
+        avatar: `${import.meta.env.BASE_URL}avatars/founder2.png`,
       },
       {
         name: "林芊妤",
@@ -35,7 +36,7 @@ function About() {
           "資料爬蟲與系統整合",
           "API 設計與測試",
         ],
-        avatar: "/avatars/founder3.png",
+        avatar: `${import.meta.env.BASE_URL}avatars/founder3.png`,
       },
     ];
   
@@ -66,7 +67,7 @@ function About() {
             </div>
 
             <div className="about-logo-container">
-                <img src="/bookradar-logo.png" alt="BookRadar logo" className="about-logo" />
+                <img src={`${import.meta.env.BASE_URL}bookradar-logo.png`} alt="BookRadar logo" className="about-logo" />
             </div>
             </section>
   

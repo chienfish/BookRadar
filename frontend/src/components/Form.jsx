@@ -8,6 +8,8 @@ import EyeIcon from "./EyeIcon";
 import { useUser } from "../contexts/UserContext";
 import loginImage from "/login.png";
 import registerImage from "/register.png";
+import React from "react";
+
 
 function Form({ route, method }) {
     const [username, setUsername] = useState("");
@@ -55,6 +57,7 @@ function Form({ route, method }) {
                 if (res.data?.access && res.data?.refresh) {
                     localStorage.setItem(ACCESS_TOKEN, res.data.access);
                     localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+                    api.defaults.headers.common["Authorization"] = `Bearer ${res.data.access}`;
                     await fetchUser();
                     if (viewport) {
                         viewport.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1.0");

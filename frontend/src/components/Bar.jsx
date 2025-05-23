@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoBookOutline } from "react-icons/io5";
 import { useUser } from "../contexts/UserContext";
+import { Link } from "react-router-dom";
 import "../styles/Bar.css";
 
 const Bar = () => {
@@ -12,14 +13,14 @@ const Bar = () => {
   return (
     <div className="bar">
       <div className="bar-content">
-        <a href="/" className="bar-logo">
+        <Link to="/" className="bar-logo">
           <IoBookOutline className="book-icon" />
-        </a>
+        </Link>
 
         <div className={`bar-links ${menuOpen ? "open" : ""}`}>
-          <a href="/">Home</a>
-          <a href="/profile">Profile</a>
-          <a href="/about">About</a>
+          <Link to="/">Home</Link>
+          <Link to="/profile">Profile</Link>
+          <Link to="/about">About</Link>
         </div>
 
         <div className="user-icon" onClick={() => setUserMenuOpen(!userMenuOpen)}>
@@ -30,7 +31,7 @@ const Bar = () => {
           )}
           {userMenuOpen && (
             <div className="user-dropdown">
-              <a href="/logout">Logout</a>
+              <Link to="/logout">Logout</Link>
             </div>
           )}
         </div>

@@ -3,6 +3,7 @@ import api from "../api";
 import "../styles/Profile.css";
 import Bar from "../components/Bar";
 import { FaRegUserCircle } from "react-icons/fa";
+import React from "react";
 
 function Profile() {
   const [account, setAccount] = useState(null);
@@ -12,7 +13,7 @@ function Profile() {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [avatar, setAvatar] = useState(null);
-  const [avatarPreview, setAvatarPreview] = useState(null); // 改為 null 預設
+  const [avatarPreview, setAvatarPreview] = useState(null);
 
   useEffect(() => {
     getAccount();
@@ -25,13 +26,19 @@ function Profile() {
         console.log("Account Data:", res.data);
         setAccount(res.data);
 
-        if (res.data.avatar) {
-          setAvatarPreview(`${import.meta.env.VITE_API_URL}${res.data.avatar}`);
+        const avatarUrl = res.data.avatar;
+        if (avatarUrl?.startsWith("http")) {
+          setAvatarPreview(avatarUrl);
+        } else if (avatarUrl) {
+          setAvatarPreview(`${import.meta.env.VITE_API_URL}${avatarUrl}`);
         } else {
-          setAvatarPreview(null); // 沒有圖就設 null
+          setAvatarPreview(null);
         }
       })
-      .catch((err) => alert(err));
+      .catch((err) => {
+        console.error("取得帳號資料失敗", err);
+        alert("載入帳號資料失敗：" + (err.response?.data?.detail || err.message));
+      });
   };
 
   const handlePasswordChange = (e) => {
@@ -50,7 +57,10 @@ function Profile() {
     setIsSubmitting(true);
 
     api
-      .post("/api/user/change-password/", { old_password: oldPassword, new_password: newPassword })
+      .post("/api/user/change-password/", {
+        old_password: oldPassword,
+        new_password: newPassword,
+      })
       .then((res) => {
         if (res.status === 200) {
           setMessage("密碼更改成功！");
@@ -90,14 +100,18 @@ function Profile() {
       .post("/api/user/upload-avatar/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       })
       .then((res) => {
         if (res.status === 200) {
           setMessage("個人圖片更新成功！");
           setAccount({ ...account, avatar: res.data.avatar });
-          setAvatarPreview(`${import.meta.env.VITE_API_URL}${res.data.avatar}`);
+
+          const newUrl = res.data.avatar?.startsWith("http")
+            ? res.data.avatar
+            : `${import.meta.env.VITE_API_URL}${res.data.avatar}`;
+
+          setAvatarPreview(newUrl);
         }
       })
       .catch(() => {
@@ -168,11 +182,7 @@ function Profile() {
           )}
           <h2>個人圖片</h2>
           <form onSubmit={handleAvatarSubmit}>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleAvatarChange}
-            />
+            <input type="file" accept="image/*" onChange={handleAvatarChange} />
             <button type="submit" disabled={!avatar}>變更個人圖片</button>
           </form>
         </div>

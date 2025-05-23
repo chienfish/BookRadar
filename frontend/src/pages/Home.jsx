@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../api";
 import "../styles/Home.css";
 import Bar from "../components/Bar";
+import React from "react";
+
 
 function Home() {
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const [categories, setCategories] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getCategories();
@@ -25,13 +29,14 @@ function Home() {
     const handleSearch = () => {
         const query = encodeURIComponent(searchInput.trim());
         const categoryQuery = selectedTypes.map(t => encodeURIComponent(t)).join(',');
-    
+
         const params = [];
         if (query) params.push(`q=${query}`);
         if (categoryQuery) params.push(`categories=${categoryQuery}`);
-    
+
         const finalQuery = params.length ? `?${params.join("&")}` : "";
-        window.location.href = `/books${finalQuery}`;
+
+        navigate(`/books${finalQuery}`);
     };
 
     return (

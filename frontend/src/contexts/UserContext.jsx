@@ -1,11 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import api from "../api";
+import { ACCESS_TOKEN } from "../constants";
+import React from "react";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [account, setAccount] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState(null);
+  const [isReady, setIsReady] = useState(false);
 
   const fetchUser = () => {
     return api.get("/api/user/info/")
@@ -17,12 +20,22 @@ export const UserProvider = ({ children }) => {
           setAvatarPreview(null);
         }
       })
-      .catch((err) => console.error("取得使用者資訊失敗", err));
+      .catch((err) => {
+        console.warn("尚未登入或無法取得使用者資料", err);
+      });
   };
 
   useEffect(() => {
-    fetchUser();
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    if (token) {
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      fetchUser().finally(() => setIsReady(true));
+    } else {
+      setIsReady(true);
+    }
   }, []);
+
+  if (!isReady) return <div>初始化使用者資料中...</div>;
 
   return (
     <UserContext.Provider value={{ account, avatarPreview, fetchUser }}>
