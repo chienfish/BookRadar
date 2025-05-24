@@ -34,6 +34,7 @@ function Home() {
         if (query) params.push(`q=${query}`);
         if (categoryQuery) params.push(`categories=${categoryQuery}`);
 
+        params.push(`page=1`);
         const finalQuery = params.length ? `?${params.join("&")}` : "";
 
         navigate(`/books${finalQuery}`);
