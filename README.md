@@ -5,6 +5,15 @@ Figma: https://www.figma.com/design/BxjMpTsyuoEbDSISjrDV31/BookRadar?node-id=0-1
 
 ---
 
+## 部署資訊
+- 後端（Django）部署於 Render:  
+  https://bookradar-api.onrender.com
+
+- 前端（React）部署於 GitHub Pages:  
+  https://chienfish.github.io/BookRadar/
+
+--- 
+
 ## 終端機執行指令
 
 #### 前端終端機

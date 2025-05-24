@@ -33,8 +33,8 @@ function About() {
         description: "主要任務：全端開發與資料庫設計",
         weeks: [
           "設計後端架構與前端 UI",
-          "資料爬蟲與系統整合",
-          "API 設計與測試",
+          "資料爬蟲、API 設計與系統整合",
+          "前後端測試與部署",
         ],
         avatar: `${import.meta.env.BASE_URL}avatars/founder3.png`,
       },
