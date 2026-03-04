@@ -1,7 +1,7 @@
 # BookRadar
 
-<h4 align="center"> BookRadar is a full-stack web application for discovering and managing books.  
-The project uses a **Django REST backend** and a **React frontend**, with authentication handled using **JWT tokens**.</h4> 
+<h4 align="center"> BookRadar is a full-stack web application for discovering and managing books.<br/>  
+The project uses a Django REST backend and a React frontend, with authentication handled using JWT tokens.</h4> 
 
 <p align="center">
   <a href="#tech-stack">Tech Stack</a> •
