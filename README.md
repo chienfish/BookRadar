@@ -138,6 +138,6 @@ Frontend runs at:
 
 Lin Chien-Yu  ttnrgjgui@gmail.com  
 
-Project:  https://github.com/chienfish/real-time-bidding
+Project:  https://github.com/chienfish/BookRadar
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
